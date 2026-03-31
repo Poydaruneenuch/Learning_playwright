@@ -5,3 +5,4 @@ test-results/
 blob-report/
 .DS_Store
 .env
+*example.spec.ts

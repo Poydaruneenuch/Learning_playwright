@@ -14,9 +14,8 @@ test.describe('ทดสอบระบบ Login', () => {
   });
 
   test('Should login successfully with valid user', async ({ page }) => {
-    // ไม่ต้อง new Class หรือเรียก .goto() แล้ว ลุยกรอกข้อมูลได้เลย!
+    // ไม่ต้อง new Class หรือเรียก .goto() แล้ว กรอกข้อมูลได้เลย!
     await loginPage.login(dataLogin.valid_user.username, dataLogin.valid_user.password);
-    
     await expect(page).toHaveURL(/.*logged-in-successfully/);
     await expect(page.locator('h1.post-title')).toContainText('Logged In Successfully');
     await page.waitForTimeout(3000); 
@@ -25,7 +24,6 @@ test.describe('ทดสอบระบบ Login', () => {
   test('Should show error message with invalid user', async ({ page }) => {
     // ข้ามขั้นตอนเปิดเว็บ มาถึงก็กรอกข้อมูลผิดได้เลย
     await loginPage.login(dataLogin.invalid_user.username, dataLogin.invalid_user.password);
-    
     await expect(page).toHaveURL(/.*practice-test-login/);
     await expect(page.locator('#error')).toContainText('Your username is invalid!');
     await page.waitForTimeout(3000);
